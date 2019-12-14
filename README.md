@@ -1,7 +1,5 @@
 # Palestra sobre PHP SSO no Tchê Linux Porto Alegre 2019
 
-
-
 ## Zentyal - Linux Small Business Server 
 [Site](http://www.zentyal.org/)
 
@@ -93,6 +91,8 @@ STREET  streetAddress
 DC      domainComponent
 UID     userid
 ```
+#### PHP SAML 
+[Site](https://github.com/lightSAML/lightSAML)
 
 ### PHP LDAP
 [Site](https://www.php.net/manual/pt_BR/ldap.examples-basic.php)
@@ -284,10 +284,145 @@ if (TRUE === ldap_bind($ldap_connection, $ldap_username, $ldap_password)){
         } //END ldap_bind
 ?>
 ```
+#### LDAP Authentication & Management for Laravel.
+[Packagist](https://packagist.org/packages/adldap2/adldap2-laravel)
+
+[Repository](https://github.com/Adldap2/Adldap2-Laravel)
+
+
+### Symfony - The Ldap Component
+[Site](https://symfony.com/doc/current/components/ldap)
 
 ```csv
-    1.  dn,objectClass,uid,homeDirectory,group,givenName,sn,displayName,cn,mail,manager,telephoneNumber,title
-    2.  cn=Dan Jump,inetOrgPerson;person;organizationalPerson;posixAccount;top,danj,/home/danj,Executive,Dan,Jump,Dan Jump,Dan Jump,danj@contoso.com,,(425)  555-0179,CEO
-    3.  cn=Adam Barr,inetOrgPerson;person;organizationalPerson;posixAccount;top,adamb,/home/adamb,Operations,Adam,Barr,Adam Barr,Adam Barr,adamb@contoso.com,cn=Dan Jump,(206)  555-5472,General Manager of Professional Services
+1.  dn,objectClass,uid,homeDirectory,group,givenName,sn,displayName,cn,mail,manager,telephoneNumber,title
+2.  cn=Dan Jump,inetOrgPerson;person;organizationalPerson;posixAccount;top,danj,/home/danj,Executive,Dan,Jump,Dan Jump,Dan Jump,danj@contoso.com,,(425)  555-0179,CEO
+3.  cn=Adam Barr,inetOrgPerson;person;organizationalPerson;posixAccount;top,adamb,/home/adamb,Operations,Adam,Barr,Adam Barr,Adam Barr,adamb@contoso.com,cn=Dan Jump,(206)  555-5472,General Manager of Professional Services
 ```
 
+#### User Data from LDAP
+```json
+{  
+“user” : “User [name=My User, roles=[different, groups,…], requestedTenant=null]”,  
+“user_name” : “My User”,  
+“user_requested_tenant” : null,  
+“remote_address” : “[::1]:58196”,  
+“backend_roles” : [  
+“different groups”  
+“Linux-Group”,  
+],  
+“custom_attribute_names” : [  
+“attr.ldap.msRTCSIP-PrimaryUserAddress”,  
+“attr.ldap.msTSExpireDate”,  
+“attr.ldap.logonCount”,  
+“attr.ldap.lastLogon”,  
+“attr.ldap.postalCode”,  
+“attr.ldap.badPwdCount”,  
+“attr.ldap.userAccountControl”,  
+“attr.ldap.whenCreated”,  
+“ldap.original.username”,  
+“attr.ldap.lastLogoff”,  
+“attr.ldap.msRTCSIP-FederationEnabled”,  
+“attr.ldap.l”,  
+“attr.ldap.sAMAccountName”,  
+“attr.ldap.msExchTextMessagingState”,  
+“attr.ldap.userPrincipalName”,  
+“attr.ldap.msExchUCVoiceMailSettings”,  
+“attr.ldap.whenChanged”,  
+“attr.ldap.msRTCSIP-InternetAccessEnabled”,  
+“attr.ldap.description”,  
+“attr.ldap.lockoutTime”,  
+“attr.ldap.displayName”,  
+“attr.ldap.objectSid”,  
+“attr.ldap.codePage”,  
+“attr.ldap.msRTCSIP-Line”,  
+“attr.ldap.mail”,  
+“attr.ldap.msExchUMDtmfMap”,  
+“attr.ldap.lastLogonTimestamp”,  
+“attr.ldap.primaryGroupID”,  
+“attr.ldap.msExchMailboxGuid”,  
+“attr.ldap.objectGUID”,  
+“attr.ldap.msTSLicenseVersion3”,  
+“attr.ldap.msTSLicenseVersion2”,  
+“attr.ldap.msRTCSIP-UserPolicies”,  
+“attr.ldap.company”,  
+“attr.ldap.msExchProvisioningFlags”,  
+“attr.ldap.countryCode”,  
+“attr.ldap.department”,  
+“attr.ldap.msExchRemoteRecipientType”,  
+“attr.ldap.instanceType”,  
+“attr.ldap.msRTCSIP-UserEnabled”,  
+“attr.ldap.telephoneNumber”,  
+“attr.ldap.msTSManagingLS”,  
+“attr.ldap.objectClass”,  
+“attr.ldap.msExchVersion”,  
+“attr.ldap.msExchUMEnabledFlags2”,  
+“attr.ldap.givenName”,  
+“attr.ldap.msRTCSIP-DeploymentLocator”,  
+“attr.ldap.msRTCSIP-OptionFlags”,  
+“ldap.dn”,  
+“attr.ldap.sAMAccountType”,  
+“[attr.ldap.co](http://attr.ldap.co/)”,  
+“[attr.ldap.cn](http://attr.ldap.cn/)”,  
+“attr.ldap.msExchMobileBlockedDeviceIDs”,  
+“attr.ldap.accountExpires”,  
+“attr.ldap.msExchMobileMailboxFlags”,  
+“attr.ldap.dSCorePropagationData”,  
+“attr.ldap.name”,  
+“attr.ldap.c”,  
+“attr.ldap.uSNCreated”,  
+“attr.ldap.uSNChanged”,  
+“attr.ldap.msExchRecipientTypeDetails”,  
+“attr.ldap.streetAddress”,  
+“attr.ldap.pwdLastSet”,  
+“attr.ldap.msExchUserAccountControl”,  
+“attr.ldap.msRTCSIP-UserRoutingGroupId”,  
+“attr.ldap.msExchRecipientDisplayType”,  
+“attr.ldap.sn”,  
+“attr.ldap.msExchWhenMailboxCreated”,  
+“attr.ldap.mailNickname”,  
+“attr.ldap.msExchMobileAllowedDeviceIDs”,  
+“attr.ldap.mobile”,  
+“attr.ldap.msTSLicenseVersion”,  
+“attr.ldap.msExchHideFromAddressLists”,  
+“attr.ldap.st”  
+],  
+“roles” : [  
+“Linux-Group”,  
+“ROLE_LDAP_ADMIN”,  
+“own_index”  
+],  
+“tenants” : {  
+“My User” : true,  
+“global_tenant” : true  
+},  
+“principal” : null,  
+“peer_certificates” : “0”,  
+“sso_logout_url” : null  
+}
+```
+
+### How to integrate Active Directory in PHP Application for SSO
+[Site](https://medium.com/@prasoon_98674/how-to-integrate-active-directory-in-php-application-for-sso-22eb62b6b866)
+
+#### LDAP and LDAP Injection/Prevention
+[Site](https://www.geeksforgeeks.org/ldap-ldap-injectionprevention/)
+
+[https://www.owasp.org/index.php/LDAP_Injection_Prevention_Cheat_Sheet](https://www.owasp.org/index.php/LDAP_Injection_Prevention_Cheat_Sheet)
+  
+[https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol](https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol)  
+
+[http://www.faqs.org/rfcs/rfc2254.html](http://www.faqs.org/rfcs/rfc2254.html)
+
+#### Pacote jasny/sso 
+
+[Repository](https://github.com/jasny/sso):  
+O utilizei para gerenciar o SSO Server. Ele é bem completo, simples e bastante utilizado pela comunidade. Existem outros pacotes, inclusive encontrei um para Laravel (que parece ser um fork do jasny/sso), mas optei pelo jasny/sso por ver que há bastante tempo ele vem sendo utilizado e atualizado; pelo fato criador do pacote estar participando do processo de amadurecimento do pacote e participando ativamente das ISSUES. Como se trata de uma parte bem sensível, esse foi o que me deixou mais seguro. Existem outros, mas esse eu achei bem simples e interessante. Optei por ele pela quantidade de utilizações e pelo que vi nas ISSUES.
+
+#### Pacote JWT Auth
+[Repository](https://github.com/tymondesigns/jwt-auth):  
+o JWT é stateless, um requisito indispensável pra trabalhar com SSO, já que um token não pode sobrescrever o outro, como acontece com a API nativa do Laravel.
+
+#### System for Cross-domain Identity Management
+
+SCIM 2, the open API for managing identities is now complete and published under the IETF.
+[Site](http://www.simplecloud.info/)
